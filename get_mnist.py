@@ -12,8 +12,8 @@ torch.manual_seed(999)
 def gray2bin(image, threshold = -1.0):
     bin_image = (image > threshold).int()
     if threshold >= 0:
-        return np.array(bin_image).reshape((28, 28))
-    return np.array(image).reshape((28, 28))
+        return np.array(bin_image).reshape((28*28))
+    return np.array(image).reshape((28*28))
 
 def get_mnist():
     train = datasets.MNIST("", train = True, download = True,
@@ -28,8 +28,8 @@ def get_mnist():
 def save_dataset(threshold):
     train_set, test_set = get_mnist()
 
-    X_train, y_train = np.zeros((len(train_set), 28, 28)), np.zeros(len(train_set), dtype=np.uint8)
-    X_test, y_test = np.zeros((len(test_set), 28, 28)), np.zeros(len(test_set), dtype=np.uint8)
+    X_train, y_train = np.zeros((len(train_set), 28*28)), np.zeros(len(train_set), dtype=np.uint8)
+    X_test, y_test = np.zeros((len(test_set), 28*28)), np.zeros(len(test_set), dtype=np.uint8)
 
     idx = 0
     for data in tqdm(train_set, desc = "Creating Training set: "):
